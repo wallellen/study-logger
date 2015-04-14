@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+    <!-- All appenders are defined here -->
+    <Appenders>
+        <!--
+             Define a console appender
+                name: the name of this appender
+                target: can be 'System.out' or 'System.err'
+                ignoreExceptions: ignore the exceptions witch will cased by this appender
+                immediateFlush: output the logs immediately, without any caches
+        -->
+        <Console name="CONSOLE"
+                 target="System.out"
+                 ignoreExceptions="true">
+
+            <!-- Define a pattern layout for console appender -->
+            <PatternLayout pattern="[%d{dd HH:mm:ss,SSS} %p %t %c{2}] %m%n"/>
+        </Console>
+    </Appenders>
+
+    <!-- All logger instances are defined here -->
+    <Loggers>
+        <!-- Define the root logger instance -->
+        <Root level="TRACE">
+            <!-- Define which appender would used in root logger -->
+            <Appender-Ref ref="CONSOLE"/>
+        </Root>
+    </Loggers>
+</Configuration>

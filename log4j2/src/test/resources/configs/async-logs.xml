@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+    <!-- All appenders are defined here -->
+    <Appenders>
+        <!--
+             Define a asynchronous appender
+                name: the name of this appender
+                ignoreExceptions: ignore the exceptions witch will cased by this appender
+                bufferSize: the size of log content cache in byte
+                includeLocation: ignore location will improve the performance
+                errorRef: when 'blocking' is false, the log queue would be overflow, then the log should be send to error appender of
+this
+        -->
+        <Async name="ASYNC"
+               blocking="false"
+               ignoreExceptions="true"
+               bufferSize="1024"
+               includeLocation="false"
+               errorRef="CONSOLE_ERR">
+            <AppenderRef ref="CONSOLE"/>
+        </Async>
+
+        <!-- The appender referenced by asynchronous appender -->
+        <Console name="CONSOLE" target="System.out" ignoreExceptions="true">
+            <PatternLayout pattern="[%d{dd HH:mm:ss,SSS} %p %t %c{2}] %m%n"/>
+        </Console>
+
+        <!-- The error appender referenced by asynchronous appender -->
+        <Console name="CONSOLE_ERR" target="System.err" ignoreExceptions="true">
+            <PatternLayout pattern="[%d{dd HH:mm:ss,SSS} %p %t %c{2}] %m%n"/>
+        </Console>
+
+    </Appenders>
+
+    <!-- All logger instances are defined here -->
+    <Loggers>
+        <!-- Define the root logger instance -->
+        <Root level="TRACE">
+            <!-- Define which appender would used in root logger -->
+            <Appender-Ref ref="ASYNC"/>
+        </Root>
+    </Loggers>
+</Configuration>

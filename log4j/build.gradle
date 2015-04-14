@@ -1,0 +1,43 @@
+apply plugin: 'java'
+apply plugin: 'idea'
+
+//noinspection GroovyUnusedAssignment
+sourceCompatibility = 1.8
+version = '1.0'
+
+idea {
+    project {
+        jdkName = '1.8'
+        languageLevel = '1.8'
+    }
+}
+
+repositories {
+    jcenter()
+    mavenCentral()
+}
+
+jar {
+    manifest {
+        attributes 'Provider': 'gradle',
+                'Implementation-Version': '1.0.0'
+    }
+}
+
+dependencies {
+    compile 'log4j:log4j:1.2+',
+            'log4j:apache-log4j-extras:1.2+',
+            'org.apache.derby:derbyclient:10+',
+            'commons-dbcp:commons-dbcp:1.+',
+            'javax.mail:mail:1.+'
+    testCompile 'junit:junit:4.+',
+            'org.hamcrest:hamcrest-all:1.+'
+}
+
+//sourceSets {
+//    test {
+//        java {
+//            srcDir '/src/test/configs'
+//        }
+//    }
+//}

@@ -1,0 +1,35 @@
+apply plugin: 'java'
+apply plugin: 'idea'
+
+//noinspection GroovyUnusedAssignment
+version = '1.0.0'
+//noinspection GroovyUnusedAssignment
+sourceCompatibility = '1.8'
+//noinspection GroovyUnusedAssignment
+targetCompatibility = '1.8'
+
+idea {
+    project {
+        jdkName = '1.8'
+        languageLevel = '1.8'
+    }
+}
+
+repositories {
+    jcenter()
+    mavenCentral()
+}
+
+jar {
+    manifest {
+        attributes 'Provider': 'gradle',
+                'Implementation-Version': version
+    }
+}
+
+dependencies {
+    compile 'org.apache.logging.log4j:log4j-core:latest.release',
+            'org.apache.logging.log4j:log4j-slf4j-impl:latest.release'
+    testCompile 'junit:junit:latest.release',
+            'org.hamcrest:hamcrest-all:latest.release'
+}

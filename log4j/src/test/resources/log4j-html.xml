@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration PUBLIC "-//APACHE//DTD LOG4J 1.2//EN"
+        "http://logging.apache.org/log4j/1.2/apidocs/org/apache/log4j/xml/doc-files/log4j.dtd">
+
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+    <!-- define a html file appender, record logs as HTML -->
+    <appender name="HTML" class="org.apache.log4j.DailyRollingFileAppender">
+        <!-- set the file path and name for this appender -->
+        <param name="File" value="${WORKDIR}/html-logs.html"/>
+        <!-- the log file name pattern with datetime -->
+        <param name="DatePattern" value="yyyy-MM-dd_HH'.html'"/>
+        <!-- set text encoding -->
+        <param name="Encoding" value="UTF-8"/>
+        <!-- set the buffer size to write file -->
+        <param name="BufferSize" value="1024"/>
+        <!-- if the new process log message append or overwrite the log file -->
+        <param name="Append" value="true"/>
+        <!-- flush the file buffer immediately -->
+        <param name="ImmediateFlush" value="true"/>
+        <!-- add patten layout into appender, to format the log as HTML -->
+        <layout class="org.apache.log4j.HTMLLayout"/>
+    </appender>
+
+    <!-- define the root log, all log instance use this config -->
+    <root>
+        <!-- define level of root log, record all logs that level above 'debug' -->
+        <level value="debug"/>
+        <!-- reference console appender in root log -->
+        <appender-ref ref="HTML"/>
+    </root>
+</log4j:configuration>

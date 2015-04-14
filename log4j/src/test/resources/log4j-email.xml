@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration PUBLIC "-//APACHE//DTD LOG4J 1.2//EN"
+        "http://logging.apache.org/log4j/1.2/apidocs/org/apache/log4j/xml/doc-files/log4j.dtd">
+
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+    <!-- SMTP appender, send log content with email -->
+    <appender name="EMAIL" class="org.apache.log4j.net.SMTPAppender">
+        <!-- buffer size of this appender, send email when buffer is full -->
+        <param name="BufferSize" value="512"/>
+        <!-- the sender SMTP host -->
+        <param name="SMTPHost" value="smtp.163.com"/>
+        <!-- the user name and password of sender SMTP host -->
+        <param name="SMTPUsername" value="alvintestmail@163.com"/>
+        <param name="SMTPPassword" value="testmailbox2014."/>
+        <!-- the title of this email -->
+        <param name="Subject" value="测试日志"/>
+        <!-- the sender email account -->
+        <param name="From" value="alvintestmail@163.com"/>
+        <!-- the receiver of this email -->
+        <param name="To" value="mousebaby8080@126.com"/>
+        <!-- the pattern to format the email content -->
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="[%d{dd HH:mm:ss,SSS} %-5p][%t][%c{3}] %m%n"/>
+        </layout>
+    </appender>
+
+    <!-- define the root log, all log instance use this config -->
+    <root>
+        <!-- define level of root log, record all logs that level above 'debug' -->
+        <level value="debug"/>
+        <!-- reference console appender in root log -->
+        <appender-ref ref="EMAIL"/>
+    </root>
+</log4j:configuration>

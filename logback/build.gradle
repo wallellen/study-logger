@@ -1,0 +1,38 @@
+apply plugin: 'java'
+apply plugin: 'idea'
+
+//noinspection GroovyUnusedAssignment
+sourceCompatibility = 1.8
+version = '1.0'
+
+idea {
+    project {
+        jdkName = '1.8'
+        languageLevel = '1.8'
+    }
+}
+
+repositories {
+    jcenter()
+    mavenCentral()
+}
+
+jar {
+    manifest {
+        attributes 'Provider': 'gradle',
+                'Implementation-Version': '1.0.0'
+    }
+}
+
+dependencies {
+    compile 'ch.qos.logback:logback-classic:latest.release',
+            'ch.qos.logback:logback-core:latest.release',
+            'org.slf4j:slf4j-api:latest.release',
+            'org.slf4j:log4j-over-slf4j:latest.release',
+            'org.slf4j:jcl-over-slf4j:latest.release',
+            'org.apache.derby:derbyclient:10+',
+            'commons-dbcp:commons-dbcp:1.+',
+            'javax.mail:mail:1.+'
+    testCompile 'junit:junit:4.+',
+            'org.hamcrest:hamcrest-all:1.+'
+}

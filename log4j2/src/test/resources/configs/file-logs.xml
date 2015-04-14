@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+
+    <!-- Some properties and variables are defined here -->
+    <Properties>
+        <!-- define a filename variable -->
+        <Property name="filename">logs/file-logs.log</Property>
+    </Properties>
+
+    <!-- All appenders are defined here -->
+    <Appenders>
+        <!--
+            Define a file appender
+                name: the name of this appender
+                ignoreExceptions: ignore the exceptions witch will cased by this appender
+                locking: lock the log file when log4j is working
+                immediateFlush: output the logs immediately, without any caches
+                append: add the new content at behind of log file or override the old content with new logs
+                bufferSize: the size of log content cache in byte
+                bufferedIO: turn on buffered IO where improve the IO performance
+        -->
+        <File name="FILE"
+              fileName="${filename}"
+              ignoreExceptions="true"
+              bufferSize="1024"
+              immediateFlush="false"
+              locking="false"
+              bufferedIO="true"
+              append="false">
+
+            <!-- Define a pattern layout for console appender -->
+            <PatternLayout pattern="[%d{dd HH:mm:ss,SSS} %p %t %c{2}] %m%n"/>
+        </File>
+    </Appenders>
+
+    <!-- All logger instances are defined here -->
+    <Loggers>
+        <!-- Define the root logger instance -->
+        <Root level="TRACE">
+            <!-- Define which appender would used in root logger -->
+            <AppenderRef ref="FILE"/>
+        </Root>
+    </Loggers>
+</Configuration>

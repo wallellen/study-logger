@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration PUBLIC "-//APACHE//DTD LOG4J 1.2//EN"
+        "http://logging.apache.org/log4j/1.2/apidocs/org/apache/log4j/xml/doc-files/log4j.dtd">
+
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+    <!-- define a database appender, record the logs into database -->
+    <appender name="DATABASE" class="org.apache.log4j.jdbc.JDBCAppender">
+        <!-- the parameters to connect the database -->
+        <param name="URL" value="jdbc:derby://localhost:1527/log4j;create=true"/>
+        <param name="Driver" value="org.apache.derby.jdbc.ClientDriver"/>
+        <param name="User" value="app"/>
+        <param name="Password" value="app"/>
+
+        <!-- The SQL statement to insert log -->
+        <param name="Sql"
+               value="insert into loggers(time_stamp,thread,info_level,class,message)values('%d','%t','%p','%c','%m')"/>
+
+        <!-- The buffer to cache the logs -->
+        <!--<param name="BufferSize" value="1024"/>-->
+    </appender>
+
+    <!-- define the root log, all log instance use this config -->
+    <root>
+        <!-- define level of root log, record all logs that level above 'debug' -->
+        <level value="debug"/>
+        <!-- reference console appender in root log -->
+        <appender-ref ref="DATABASE"/>
+    </root>
+</log4j:configuration>
